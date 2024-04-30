@@ -5,6 +5,7 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
+vim.opt.relativenumber = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -142,7 +143,6 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   { 'numToStr/Comment.nvim', opts = {} },
-  -- { 'rose-pine/neovim', name = 'rose-pine' },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -176,6 +176,7 @@ require('lazy').setup({
       require('cyberdream').setup {
         -- Recommended - see "Configuring" below for more config options
         transparent = true,
+        transparent_background = true,
         italic_comments = true,
         hide_fillchars = true,
         borderless_telescope = true,
@@ -187,15 +188,6 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
-  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lsp-config',
@@ -207,7 +199,7 @@ require('lazy').setup({
   require 'kickstart.mini-nvim',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -237,77 +229,3 @@ require('lazy').setup({
     },
   },
 })
-
--- require('rose-pine').setup {
---   variant = 'auto', -- auto, main, moon, or dawn
---   dark_variant = 'main', -- main, moon, or dawn
---   dim_inactive_windows = false,
---   extend_background_behind_borders = true,
---
---   enable = {
---     terminal = true,
---     legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
---     migrations = true, -- Handle deprecated options automatically
---   },
---
---   styles = {
---     bold = true,
---     italic = true,
---     transparency = false,
---   },
---
---   groups = {
---     border = 'muted',
---     link = 'iris',
---     panel = 'surface',
---
---     error = 'love',
---     hint = 'iris',
---     info = 'foam',
---     note = 'pine',
---     todo = 'rose',
---     warn = 'gold',
---
---     git_add = 'foam',
---     git_change = 'rose',
---     git_delete = 'love',
---     git_dirty = 'rose',
---     git_ignore = 'muted',
---     git_merge = 'iris',
---     git_rename = 'pine',
---     git_stage = 'iris',
---     git_text = 'rose',
---     git_untracked = 'subtle',
---
---     h1 = 'iris',
---     h2 = 'foam',
---     h3 = 'rose',
---     h4 = 'gold',
---     h5 = 'pine',
---     h6 = 'foam',
---   },
---
---   highlight_groups = {
---     -- Comment = { fg = "foam" },
---     -- VertSplit = { fg = "muted", bg = "muted" },
---   },
---
---   before_highlight = function(group, highlight, palette)
---     -- Disable all undercurls
---     -- if highlight.undercurl then
---     --     highlight.undercurl = false
---     -- end
---     --
---     -- Change palette colour
---     -- if highlight.fg == palette.pine then
---     --     highlight.fg = palette.foam
---     -- end
---   end,
--- }
-
--- vim.cmd 'colorscheme rose-pine'
--- vim.cmd("colorscheme rose-pine-main")
--- vim.cmd("colorscheme rose-pine-moon")
--- vim.cmd("colorscheme rose-pine-dawn")
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
